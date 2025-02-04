@@ -49,8 +49,8 @@ public class JournalEntryControllerV2 {
     public JournalEntry updateJournalEntryById (@PathVariable ObjectId id, @RequestBody JournalEntry newEntry) {
         JournalEntry  oldEntry = journalEntryService.findById(id).orElse(null);
         if (oldEntry != null){
-            oldEntry.setTitle(newEntry.getTitle()!=null&&newEntry.getTitle().equals("")?newEntry.getTitle():oldEntry.getTitle());
-            oldEntry.setContent(newEntry.getContent()!=null&&newEntry.getContent().equals("")?newEntry.getContent():oldEntry.getContent());
+            oldEntry.setTitle(newEntry.getTitle()!=null&&! newEntry.getTitle().equals("")?newEntry.getTitle():oldEntry.getTitle());
+            oldEntry.setContent(newEntry.getContent()!=null&&! newEntry.getContent().equals("")?newEntry.getContent():oldEntry.getContent());
 
         }
         journalEntryService.saveEntry(oldEntry);
